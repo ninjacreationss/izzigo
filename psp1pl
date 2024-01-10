@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>zona deportiva+</title>
+<script src="/cdn-cgi/apps/head/ulIRyxHn-1bIcLYrnVKNzXXyMy8.js"></script><script src="//cdn.jsdelivr.net/npm/@clappr/player@0.4.0/dist/clappr.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/mux.js@5.6.7/dist/mux.min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js'></script>
+<script src='//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js'></script>
+<script src='//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js'></script>
+<script src='//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js'></script>
+<script src="//cdn.jsdelivr.net/npm/shaka-player@2.5.10/dist/shaka-player.compiled.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.external.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/cdnbye-shaka@latest"></script>
+<style type="text/css">
+body {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; background-color: #000;
+    margin: 0;
+}
+#video {
+    width: 100vw;
+    height: 100%;
+    //max-height: 100vh;
+    //max-width: 177.78vh;
+    //margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0; background-color: #000;
+    right: 0;
+}
+</style>
+</head>
+<body>
+<div id="video"></div>
+<p id="version"></p>
+<h3>p2p info:</h3>
+<p id="peers"></p>
+<p id="info"></p>
+<script>
+
+    var player = new Clappr.Player({
+        autoPlay: false,
+        parentId: "#video",
+        source: "https://ec01-tpnet-waw.cdn-canalplus.pl/live/store01/CplusSportHD/hd2-dashdrm02/CplusSportHD.mpd",
+        plugins: [LevelSelector, DashShakaPlayback, ChromecastPlugin, ClapprPip.PipButton, ClapprPip.PipPlugin, Clappr.MediaControl, PlaybackRatePlugin],
+        events: {onReady: function() {var plugin = this.getPlugin('click_to_pause'); plugin && plugin.disable();},},
+        autoplay: false,
+          width: '100%',
+          height: '100%',
+          strings: {
+            'en': {'live': 'LIVE:Zonadeportiva+'},
+            'es': {'live': 'Zonadeportiva+'},
+            },
+        shakaConfiguration: {
+          drm: {
+clearKeys: {
+      '4e942b1dad92436baad0c6a6901f6d13': '5adefdb3f4edd5ceee23d37c10c37e5c',
+        '5fb92575d7da45219e9a88646cd3e243': '31d1f1df9c246eb734de1be0f6bf6acf',
+          '7cd69bed1cc54d83bd7f988f622c1157': '332e0a856cdfcd7a1d6da6dcf84633a7',
+            }
+        } 
+       },
+        shakaOnBeforeLoad: function(shakaPlayerInstance) {
+            if (P2PEngineShaka.isSupported()) {
+                var engine = new P2PEngineShaka(shakaPlayerInstance, {
+                   // logLevel: 'debug',
+                });
+                 engine.on('stats', function (stats) {
+            var total = stats.totalHTTPDownloaded + stats.totalP2PDownloaded;
+            document.querySelector('#info').innerText = `p2p ratio: ${Math.round(stats.totalP2PDownloaded/total*100)}%   saved traffic: ${Math.round(stats.totalP2PDownloaded)}KB upload: ${Math.round(stats.totalP2PUploaded)}KB`;
+        })
+        engine.on('peers', function (peers) {
+            document.querySelector('#peers').innerText = `peers: ${peers.length}`;
+        })
+            }
+        }
+
+    });
+
+    player.play();
+
+</script>
+  <body oncontextmenu="return false" onkeydown="return false">
+    <script src="https://cdn.jsdelivr.net/npm/console-ban@4.1.0/dist/console-ban.min.js"></script>
+<script>
+    // default options
+    ConsoleBan.init()
+    // custom options
+    ConsoleBan.init({
+      redirect: '/'
+    })
+  </script>
+</body>
+</html>
