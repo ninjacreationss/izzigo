@@ -46,7 +46,7 @@ body {
     var player = new Clappr.Player({
         autoPlay: false,
         parentId: "#video",
-        source: "https://ec01-tpnet-waw.cdn-canalplus.pl/live/store01/CplusSportHD/hd2-dashdrm02/CplusSportHD.mpd",
+        source: "https://ec01-tpnet-waw.cdn-canalplus.pl/live/store01/PolsatPRE1/hd2-dashdrm02/PolsatPRE1.mpd",
         plugins: [LevelSelector, DashShakaPlayback, ChromecastPlugin, ClapprPip.PipButton, ClapprPip.PipPlugin, Clappr.MediaControl, PlaybackRatePlugin],
         events: {onReady: function() {var plugin = this.getPlugin('click_to_pause'); plugin && plugin.disable();},},
         autoplay: false,
@@ -59,9 +59,10 @@ body {
         shakaConfiguration: {
           drm: {
 clearKeys: {
-      '4e942b1dad92436baad0c6a6901f6d13': '5adefdb3f4edd5ceee23d37c10c37e5c',
-        '5fb92575d7da45219e9a88646cd3e243': '31d1f1df9c246eb734de1be0f6bf6acf',
-          '7cd69bed1cc54d83bd7f988f622c1157': '332e0a856cdfcd7a1d6da6dcf84633a7',
+      'eeecb688be04a358b48d040e5ce3e59': '986c128156ba5a01b36fdd7c10c34e0c',
+      '7d169583d69d4ff997465fcda11743a8': 'ac55341e5a29db0966c6ddab2966a581',
+      '1609061574ff4e0195ec3e98a6adc2de': 'a96022260ad6e857a731813a9b308dfe',
+
             }
         } 
        },
@@ -85,15 +86,5 @@ clearKeys: {
     player.play();
 
 </script>
-  <body oncontextmenu="return false" onkeydown="return false">
-    <script src="https://cdn.jsdelivr.net/npm/console-ban@4.1.0/dist/console-ban.min.js"></script>
-<script>
-    // default options
-    ConsoleBan.init()
-    // custom options
-    ConsoleBan.init({
-      redirect: '/'
-    })
-  </script>
 </body>
 </html>
