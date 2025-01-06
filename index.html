@@ -472,40 +472,26 @@ Liga MX Femenil: Tigres UANL vs Tijuana<span class="t">05:06</span></a>
 
 <!--initiate accordion-->
 <script type="text/javascript">
-	$(function() {
-	
-	 var menu_ul = $('.menu > li > ul'),
-	 menu_a = $('.menu > li > a');
-	 
-	 menu_ul.hide();
-	
-	 menu_a.click(function(e) {
-	 e.preventDefault();
-	 if(!$(this).hasClass('active')) {
-	 menu_a.removeClass('active');
-	 menu_ul.filter(':visible').slideUp('fast');
-	 $(this).addClass('active').next().stop(true,true).slideDown('fast');
-	 } else {
-	 $(this).removeClass('active');
-	 $(this).next().stop(true,true).slideUp('fast');
-	 }
-	 });
-	
-	});
-</script>
-
-<br>
-
-</div>
-<script>
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+    $(function() {
+    
+     var menu_ul = $('.menu > li > ul'),
+     menu_a = $('.menu > li > a');
+     
+     menu_ul.hide();
+    
+     menu_a.click(function(e) {
+     e.preventDefault();
+     if(!$(this).hasClass('active')) {
+     menu_a.removeClass('active');
+     menu_ul.filter(':visible').slideUp('fast');
+     $(this).addClass('active').next().stop(true,true).slideDown('fast');
+     } else {
+     $(this).removeClass('active');
+     $(this).next().stop(true,true).slideUp('fast');
+     }
+     });
+    
+    });
 </script>
 </body>
 </html>
